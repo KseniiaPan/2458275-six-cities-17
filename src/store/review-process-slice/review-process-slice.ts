@@ -9,7 +9,6 @@ const initialState: ReviewProcess = {
   reviews: [],
   isNewReviewPosting: false,
   isReviewsDataLoading: true,
-
 };
 
 export const reviewProcessSlice = createSlice({

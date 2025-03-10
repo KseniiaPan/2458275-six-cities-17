@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offers-types';
 import {capitalize, getRatingValue} from '../../utils/common';
-import {AppRoute, FavouriteButtonType} from '../../consts';
+import {AppRoute, FavouriteButtonType, CardSize} from '../../consts';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 type OfferCardProps = {
@@ -13,8 +13,8 @@ type OfferCardProps = {
 function OfferCard({offer, cardType, onActiveOfferCardChange}: OfferCardProps): JSX.Element {
   const {title, type, price, isPremium, rating, previewImage, id} = offer;
   const cardClassName = cardType === 'favorites' ? 'favorites__card-info place-card__info' : 'place-card__info';
-  const cardWidth = cardType === 'favorites' ? 150 : 260;
-  const cardHeight = cardType === 'favorites' ? 110 : 200;
+  const cardWidth = cardType === 'favorites' ? CardSize.FavoritesCard.width : CardSize.PlaceCard.width;
+  const cardHeight = cardType === 'favorites' ? CardSize.FavoritesCard.height : CardSize.PlaceCard.height;
 
   return (
     <article className={`${cardType}__card place-card`}

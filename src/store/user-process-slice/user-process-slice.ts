@@ -2,7 +2,6 @@ import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace, AuthorizationStatus} from '../../consts';
 import {UserProcess} from '../../types/state-types';
 import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
-import {saveToken, dropToken} from '../../services/token';
 import {toast} from 'react-toastify';
 
 const initialState: UserProcess = {
@@ -27,8 +26,6 @@ export const userProcessSlice = createSlice({
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.userData = action.payload;
-        saveToken(action.payload.token);
-
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
@@ -38,7 +35,6 @@ export const userProcessSlice = createSlice({
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.userData = null;
-        dropToken();
       })
       .addCase(logoutAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.Auth;

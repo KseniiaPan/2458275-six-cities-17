@@ -6,7 +6,7 @@ import LoadingPage from '../../pages/loading-page/loading-page';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import FavoritePlacesContainer from '../../components/favorite-places-container/favorite-places-container';
-import FavoritePlacesEmptyContainer from '../../components/favorite-places-container/favorite-places-empty-container';
+import FavoritePlacesEmptyContainer from '../../components/favorite-places-empty-container/favorite-places-empty-container';
 
 function FavoritesPage(){
   const favoriteOffersAmount = useAppSelector(getFavoriteOffersData).length;

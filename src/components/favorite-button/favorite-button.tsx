@@ -1,5 +1,5 @@
 import {useMemo} from 'react';
-import {FavouriteButtonType, AuthorizationStatus, AppRoute} from '../../consts';
+import {FavouriteButtonType, AuthorizationStatus, AppRoute, BookmarkSize} from '../../consts';
 import { getAuthorizationStatus } from '../../store/user-process-slice/selectors';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/index';
@@ -22,8 +22,8 @@ function FavoriteButton ({ offerId, buttonType}: FavoriteButtonProps): JSX.Eleme
   const buttonClass = `button ${buttonType === FavouriteButtonType.FullOfferButton ? 'offer__bookmark-button' : 'place-card__bookmark-button'} ${isFavorite && isAuthorised && activeButtonClass}`;
 
   const bookmarkClass = buttonType === FavouriteButtonType.FullOfferButton ? 'offer__bookmark-icon' : 'place-card__bookmark-icon';
-  const bookmarkWidth = buttonType === FavouriteButtonType.FullOfferButton ? 31 : 18;
-  const bookmarkHeight = buttonType === FavouriteButtonType.FullOfferButton ? 33 : 19;
+  const bookmarkWidth = buttonType === FavouriteButtonType.FullOfferButton ? BookmarkSize.FullOffer.width : BookmarkSize.PlaceCard.width;
+  const bookmarkHeight = buttonType === FavouriteButtonType.FullOfferButton ? BookmarkSize.FullOffer.height : BookmarkSize.PlaceCard.height;
 
   const handleFavoriteButtonClick = () => {
     if (isAuthorised) {

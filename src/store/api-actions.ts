@@ -6,6 +6,7 @@ import {UserData} from '../types/user-data';
 import {AuthData} from '../types/auth-data';
 import {Review, CommentData} from '../types/reviews-types';
 import {APIRoute} from '../consts';
+import {saveToken, dropToken} from '../services/token';
 
 export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
@@ -39,6 +40,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
   'user/login',
   async ({email, password}, {extra: api}) => {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
     return data;
   },
 );
@@ -51,6 +53,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   'user/logout',
   async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
+    dropToken();
   },
 );
 
